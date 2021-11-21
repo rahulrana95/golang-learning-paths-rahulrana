@@ -33,3 +33,20 @@ func TimeRequiredToBuy(tickets []int, k int) int {
 
 	return ans
 }
+
+// https://leetcode.com/problems/two-furthest-houses-with-different-colors/
+func maxDistance(colors []int) int {
+	ans := -1
+	for i, _ := range colors {
+		for j := i + 1; j < len(colors); j++ {
+			if colors[j] != colors[i] {
+				if j-i > ans {
+					ans = j - i
+				}
+			}
+		}
+	}
+
+	return ans
+
+}
