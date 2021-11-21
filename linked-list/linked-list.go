@@ -30,12 +30,24 @@ func (list *LinkedList) Add(value string) {
 	}
 }
 
-func (list *LinkedList) PrintLinkedList() {
+func (list *LinkedList) PrintLinkedList(printExtra bool) {
 	node := list.head
+
+	if printExtra {
+		fmt.Println("Printing start")
+	}
+
+	if node == nil {
+		fmt.Println("List does not exist")
+	}
 
 	for node != nil {
 		fmt.Println(node.value)
 		node = node.next
+	}
+
+	if printExtra {
+		fmt.Println("Printing ends")
 	}
 }
 
@@ -88,6 +100,16 @@ func (list *LinkedList) ReverseLinkedList() {
 	}
 }
 
+func (list *LinkedList) CreateDummyLinkedList(data []string) *LinkedList {
+	newList := &LinkedList{}
+	for _, value := range data {
+		newList.Add(value)
+	}
+
+	return newList
+
+}
+
 func helperReverse(node *Node) {
 	if node == nil {
 		return
@@ -105,4 +127,8 @@ func (list *LinkedList) PrintReverseOrder() {
 
 	helperReverse(list.head)
 
+}
+
+func (list *LinkedList) DeleteLinkedList() {
+	list.head = nil
 }
