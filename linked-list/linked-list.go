@@ -1,6 +1,8 @@
 package linkedList
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Node struct {
 	value string
@@ -131,4 +133,74 @@ func (list *LinkedList) PrintReverseOrder() {
 
 func (list *LinkedList) DeleteLinkedList() {
 	list.head = nil
+}
+
+func (list *LinkedList) GetLengthIterative() int {
+	node := list.head
+	len := 0
+	if node == nil {
+		return len
+	}
+
+	for node != nil {
+		len++
+		node = node.next
+	}
+
+	return len
+}
+
+func getLen(node *Node, len int) int {
+	if node == nil {
+		return 0
+	}
+
+	len = len + getLen(node.next, len)
+
+	len++
+
+	return len
+
+}
+
+func (list *LinkedList) GetLengthRecursive() int {
+	node := list.head
+	len := 0
+	if node == nil {
+		return len
+	}
+
+	len = getLen(node, 0)
+
+	return len
+}
+
+func MakeMiddleNodeHead(list *LinkedList) {
+	len := list.GetLengthIterative()
+
+	if len == 0 || len == 1 || len == 2 {
+		return
+	}
+	node := list.head
+
+	middleIndex := int(len / 2)
+
+	for i := 0; i < middleIndex-1; i++ {
+		node = node.next
+	}
+
+	nextOfMiddle := node.next.next
+	middle := node.next
+
+	headCopy := list.head
+	// modify head
+	list.head = middle
+	list.head.next = headCopy.next
+
+	// updat middle
+	// modify middle with old head
+	node.next = headCopy
+
+	node.next.next = nextOfMiddle
+
 }
