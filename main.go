@@ -1,4 +1,3 @@
-package main
 
 import (
 	"fmt"
@@ -19,10 +18,38 @@ func main() {
 	// list.delete("3")
 	// list.delete("4")
 	// list.reverseLinkedList()
-	list.PrintReverseOrder()
-	fmt.Println("---")
-	list.PrintLinkedList()
-	fmt.Println("Welcome")
+	// list.PrintReverseOrder()
+	// fmt.Println("---")
+	// list.PrintLinkedList()
+	// fmt.Println("Welcome")
 
 	leetcodeContest267.TimeRequiredToBuy(arr, 2)
+
+	//mapExamples()
+	structExample()
+}
+
+func mapExamples() {
+	languages := make(map[string]string)
+
+	fmt.Println(languages)
+	languages["JS"] = "Javascript"
+	languages["PY"] = "Python"
+	fmt.Println(languages)
+	fmt.Println(languages["JS"])
+
+}
+
+type User struct {
+	name   string
+	email  string
+	status string
+	age    int
+}
+
+func structExample() {
+
+	hitesh := User{name: "hitesh", email: "hite@hgmauk.com", status: "active", age: 21}
+
+	fmt.Println(hitesh)
 }
